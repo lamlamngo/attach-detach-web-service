@@ -134,7 +134,7 @@ function reset() {
 function attach() {
   fetch('http://10.14.32.28:8080/attach')
   .then(function(response) {
-    console.log(response);
+    console.log(response["status"]);
   })
 }
 
