@@ -122,7 +122,7 @@ top:1px;
 </div>
 </div>
 <script>
-var attached = true
+var attached = false
 var set = true
 
 function reset() {
@@ -132,10 +132,29 @@ function reset() {
 }
 
 function attach() {
-  fetch('http://10.14.32.28:8080/attach')
-  .then(function(response) {
-    console.log(response["status"]);
-  })
+  if (!attached) {
+    fetch('http://10.14.32.28:8080/attach')
+    .then(function(response) {
+      if (response["status"] == 200) {
+        console.log("SUCCESS");
+        document.getElementById("attachButton").firstChild.data = "detach";
+        document.getElementById("second").style.visibility = "show";
+        attached = true
+      } else {
+        console.log("something wrong");
+      }
+    })
+  } else {
+    fetch('http://10.14.32.28:8080/detach')
+    .then(function(response) {
+      if (response["status"] == 200) {
+        console.log("SUCCESS");
+        document.getElementById("attachButton").firstChild.data = "Served by Alef";
+        document.getElementById("second").style.visibility = "hidden";
+        attached = false
+      }
+    })
+  }
 }
 
 function setLTTarget() {
