@@ -17,6 +17,7 @@ module.exports = function(app, childproc) {
                 if (error == null) {
                   res.sendStatus(200);
                 } else {
+                  console.log(error);
                   res.sendStatus(400);
                 }
 
