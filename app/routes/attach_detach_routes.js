@@ -1,7 +1,6 @@
 module.exports = function(app, childproc) {
-  var result = undefined;
 
-  app.post('/detach', (req, res) => {
+  app.get('/detach', (req, res) => {
     var test = childproc(`python /opt/3Gdetach.py ${req.ip}`,
               (error, stdout, stderr) => {
                 if (error == null) {
