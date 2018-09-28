@@ -7,6 +7,9 @@ module.exports = function(app, childproc) {
   })
 
   app.get('/attach', (req, res) => {
-    res.send(404);
-  })
+    var test = childproc('echo "abcd"',
+              (error, stdout, stderr) => {
+                console.log(`${stdout}`)
+                console.log(`${stderr}`)
+              });
 }
