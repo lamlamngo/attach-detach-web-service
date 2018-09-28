@@ -7,6 +7,6 @@ module.exports = function(app, childproc) {
   })
 
   app.get('/attach', (req, res) => {
-    res.send(result)
+    res.send(404);
   })
 }
