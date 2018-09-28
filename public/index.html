@@ -96,17 +96,21 @@ top:1px;
   color: #ffffff;
 }
 
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
   </style>
 </head>
 <body onload="reset()" bgcolor="#00000">
 <div class="content">
 
 <p>
-<img src="alef_logo.PNG">
+<img src="alef_logo.PNG" class="responsive">
 </p>
 <p>
 <button id="attachButton" onclick="attach()" class="alef">Served by Alef Edge</button>
-<button id="attachButton" onclick="attach()" class="cloud">Served by Third Party</button>
 </p>
 
 <div id="second">
@@ -116,7 +120,7 @@ top:1px;
 </p>
 
 <p>
-<button id="set" onclick="setLTTarget()">Set LI Target</button>
+<button id="set" onclick="setLTTarget()" class="cloud">Set LI Target</button>
 </p>
 
 </div>
@@ -137,8 +141,8 @@ function attach() {
     .then(function(response) {
       if (response["status"] == 200) {
         console.log("SUCCESS");
-        document.getElementById("attachButton").firstChild.data = "detach";
-        document.getElementById("second").style.visibility = "show";
+        document.getElementById("attachButton").firstChild.data = "Served by Third Party";
+        document.getElementById("second").style.visibility = "visible";
         attached = true
       } else {
         console.log("something wrong");
