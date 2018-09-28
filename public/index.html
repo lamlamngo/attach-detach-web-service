@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <title>Website</title>
+  <style>
+  .attach {
+  	-moz-box-shadow: 0px 0px 0px 0px #37ba12;
+  	-webkit-box-shadow: 0px 0px 0px 0px #37ba12;
+  	box-shadow: 0px 0px 0px 0px #37ba12;
+  	background-color:#44c767;
+  	-moz-border-radius:28px;
+  	-webkit-border-radius:28px;
+  	border-radius:28px;
+  	border:1px solid #18ab29;
+  	display:inline-block;
+  	cursor:pointer;
+  	color:#ffffff;
+  	font-family:Arial;
+  	font-size:17px;
+  	padding:16px 31px;
+  	text-decoration:none;
+  	text-shadow:0px 1px 0px #2f6627;
+  }
+  .attach:hover {
+  	background-color:#5cbf2a;
+  }
+  .attach:active {
+  	position:relative;
+  	top:1px;
+  }
+
+  .everything {
+  width: 20%;
+  margin: 0 auto;
+  }
+
+  .defaultTextBox {
+    padding: 0;
+    height: 30px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+    font-size: 16px;
+}
+
+  </style>
+</head>
+<body onload="reset()">
+<div class="everything">
+<p>
+<button id="attachButton" onclick="attach()" class="attached">Attach</button>
+</p>
+
+<div id="second">
+<p>
+<label id="zeroLabel">Zero Rated Bytes</label>
+<textarea id="textbox" readonly="true" class="defaultTextBox"></textarea>
+</p>
+
+<p>
+<button id="set" onclick="setLTTarget()">Set LI Target</button>
+</p>
+
+</div>
+</div>
+<script>
+var attached = true
+var set = true
+
+function reset() {
+  console.log("this works");
+  document.getElementById("attachButton").firstChild.data = "attach";
+  document.getElementById("second").style.visibility = "hidden";
+}
+
+function attach() {
+  if (attached) {
+    document.getElementById("attachButton").firstChild.data = "detach";
+    document.getElementById("second").style.visibility = "visible";
+  } else {
+    document.getElementById("attachButton").firstChild.data = "attach";
+    document.getElementById("second").style.visibility = "hidden";
+  }
+  attached = !attached
+}
+
+function setLTTarget() {
+  if (set) {
+    document.getElementById("set").firstChild.data = "Set LI Target"
+    getIP();
+  } else {
+    document.getElementById("set").firstChild.data = "Unset LI Target"
+  }
+
+  set = !set
+}
+
+function getIP() {
+  window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+  var pc = new RTCPeerConnection({iceServers:[]}),
+  noop = function(){};
+
+  pc.createDataChannel("");
+  pc.createOffer(pc.setLocalDescription.bind(pc), noop);
+  pc.onicecandidate = function(ice){
+if(!ice || !ice.candidate || !ice.candidate.candidate)  return;
+
+      var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+
+      console.log('my IP: ', myIP);
+$('.ipAdd').text(myIP);
+
+      pc.onicecandidate = noop;
+
+}
+}
+</script>
+</body>
+</html>
