@@ -11,6 +11,7 @@ module.exports = function(app, childproc) {
               (error, stdout, stderr) => {
                 console.log(`${stdout}`)
                 console.log(`${stderr}`)
+                console.log(`${error}`)
               });
   })
 }
