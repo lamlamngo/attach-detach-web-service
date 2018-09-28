@@ -4,6 +4,7 @@ module.exports = function(app, childproc) {
   app.get('/detach', (req, res) => {
     var ipStr = `${req.ip}`;
     var ip = ipStr.substring(ipStr.lastIndexOf(":") + 1);
+    console.log(`detach check ip address is ${ip}`)
     if (attached_list[ip]) {
       var test = childproc(`cd /opt && python 3Gdetach.py ${ip}`,
                 (error, stdout, stderr) => {
@@ -22,7 +23,7 @@ module.exports = function(app, childproc) {
   app.get('/status', (req, res) => {
     var ipStr = `${req.ip}`;
     var ip = ipStr.substring(ipStr.lastIndexOf(":") + 1);
-    console.log(`ip address is ${ip}`)
+    console.log(`status check ip address is ${ip}`)
 
     if (attached_list[ip]) {
       res.sendStatus(200);
@@ -34,7 +35,7 @@ module.exports = function(app, childproc) {
   app.get('/attach', (req, res) => {
     var ipStr = `${req.ip}`;
     var ip = ipStr.substring(ipStr.lastIndexOf(":") + 1);
-    console.log(`ip address is ${ip}`)
+    console.log(`attach check ip address is ${ip}`)
 
     if (!(ip in attached_list)) {
       var test = childproc(`cd /opt && python 3Gattach.py ${ip}`,
