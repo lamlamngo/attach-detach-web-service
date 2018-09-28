@@ -12,4 +12,5 @@ module.exports = function(app, childproc) {
                 console.log(`${stdout}`)
                 console.log(`${stderr}`)
               });
+  })
 }
