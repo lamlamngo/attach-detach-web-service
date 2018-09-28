@@ -12,6 +12,7 @@ module.exports = function(app, childproc) {
   })
 
   app.get('/attach', (req, res) => {
+    console.log(`${req.ip}`);
     var test = childproc(`python /opt/3Gattach.py ${req.ip}`,
               (error, stdout, stderr) => {
                 if (error == null) {
