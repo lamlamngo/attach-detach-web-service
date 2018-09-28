@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const exec = require('child_process').exec;
 
 var alef_results;
 var cloud_results;
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-require('./app/routes')(app, {});
+require('./app/routes')(app, exec {});
 
 
 app.listen(port,ip, () => {

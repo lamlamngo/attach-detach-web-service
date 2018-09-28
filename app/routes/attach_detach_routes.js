@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app, childproc) {
   var result = undefined;
 
   app.post('/detach', (req, res) => {
