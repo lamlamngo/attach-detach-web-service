@@ -18,6 +18,7 @@ module.exports = function(app, childproc) {
   app.get('/attach', (req, res) => {
     var ipStr = `${req.ip}`;
     var ip = ipStr.substring(ipStr.lastIndexOf(":") + 1);
+    console.log(`ip address is ${ip}`)
     var test = childproc(`cd /opt && python 3Gattach.py ${ip}`,
               (error, stdout, stderr) => {
                 if (error == null) {
