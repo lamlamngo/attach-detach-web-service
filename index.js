@@ -21,6 +21,6 @@ app.use(bodyParser.json());
 require('./app/routes')(app, exec, {});
 
 
-app.listen(port,ip, () => {
+app.listen(port, () => {
   console.log('We are live on ' + port);
 })
