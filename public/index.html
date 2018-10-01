@@ -109,18 +109,15 @@ top:1px;
 <p>
 <img src="alef_logo.PNG" class="responsive">
 </p>
+<h1 id="label"> Currently served by the cloud.
 <p>
-<button id="attachButton" onclick="attach()" class="alef">Served by Alef Edge</button>
+<button id="attachButton" onclick="attach()" class="alef">Attach to Alef</button>
 </p>
 
 <div id="second">
 <p>
 <label id="zeroLabel" class = "text">Zero Rated Bytes</label>
 <textarea id="textbox" readonly="true" class="defaultTextBox"></textarea>
-</p>
-
-<p>
-<button id="set" onclick="setLTTarget()" class="cloud">Set LI Target</button>
 </p>
 
 </div>
@@ -133,18 +130,20 @@ function reset() {
   fetch('http://10.14.32.28:8080/status')
   .then(function(response) {
     if (response["status"] == 200) {
-      document.getElementById("attachButton").firstChild.data = "Served by Third Party";
+      document.getElementById("label").firstChild.data = "Currently served by Alef";
+      document.getElementById("attachButton").firstChild.data = "Detach from Alef";
       document.getElementById("second").style.visibility = "visible";
       attached = true
     } else {
       console.log("SUCCESS");
-      document.getElementById("attachButton").firstChild.data = "Served by Alef";
+      document.getElementById("label").firstChild.data = "Currently served by Cloud";
+      document.getElementById("attachButton").firstChild.data = "Attach to Alef";
       document.getElementById("second").style.visibility = "hidden";
       attached = false
     }
   })
-  document.getElementById("attachButton").firstChild.data = "Served by Alef";
-  document.getElementById("second").style.visibility = "hidden";
+//   document.getElementById("attachButton").firstChild.data = "Served by Alef";
+//   document.getElementById("second").style.visibility = "hidden";
 }
 
 function attach() {
@@ -153,7 +152,8 @@ function attach() {
     .then(function(response) {
       if (response["status"] == 200) {
         console.log("SUCCESS");
-        document.getElementById("attachButton").firstChild.data = "Served by Third Party";
+        document.getElementById("attachButton").firstChild.data = "Detach from Alef";
+	document.getElementById("label").firstChild.data = "Currently served by Alef";
         document.getElementById("second").style.visibility = "visible";
         attached = true
       } else {
@@ -165,25 +165,15 @@ function attach() {
     .then(function(response) {
       if (response["status"] == 200) {
         console.log("SUCCESS");
-        document.getElementById("attachButton").firstChild.data = "Served by Alef";
+	      document.getElementById("label").firstChild.data = "Currently served by Cloud";
+        document.getElementById("attachButton").firstChild.data = "Attach to Alef";
         document.getElementById("second").style.visibility = "hidden";
         attached = false
       }
     })
   }
 }
-
-function setLTTarget() {
-  if (set) {
-    document.getElementById("set").firstChild.data = "Set LI Target"
-    getIP();
-  } else {
-    document.getElementById("set").firstChild.data = "Unset LI Target"
-  }
-
-  set = !set
-}
-
+	
 function getIP() {
   window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
   var pc = new RTCPeerConnection({iceServers:[]}),
