@@ -12,6 +12,8 @@ module.exports = function(app, childproc) {
                     var run = childproc(`~/Lam/attach-detach-web-service/generate.sh ${ip}`, 
                       (error_1, stdout_1,stderr_1) => {
                         console.log("IN HERE")
+                        console.log(error_1);
+                        console.log(stdout_1);
                         if (error_1 == null) {
                             var fs = require('fs');
                             fs.readFile(`/opt/marben/${ip}.outp`, 'utf8', function(err, contents) {
