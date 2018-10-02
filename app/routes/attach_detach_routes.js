@@ -27,8 +27,32 @@ module.exports = function(app, childproc) {
 
                                   res.send({cdr: cdr_list[2]})
                                 } else {
-                                  res.send({cdr: -1});
-                                  console.log("wrong length");
+                                  var second_run = childproc(`/home/alef/Lam/attach-detach-web-service/generate_2.sh ${ip}`,
+                                  (error_2, stdout_2, stderr_2) => {
+                                    console.log("in here 222")
+                                    if (error_2 == null) {
+                                     var fs = require('fs');
+ 
+                                     fs.readFile(`/home/alef/Lam/attach-detach-web-service/${ip}.outp`, 'utf8', function(err, contents_2) {
+                                       console.log(contents_2);
+                                
+                                       if (contents_2 != undefined) {
+                                        var cdr_list = contents_2.split(" ")
+        
+                                        if (cdr_list.length == 3) {
+                                          console.log(cdr_list[2])
+ 
+                                          res.send({cdr: cdr_list[2]})
+                                        } else {
+                                          res.send({cdr: -1})
+                                          console.log("wrong length");
+                                        }
+                                       } else {
+                                         res.send({cdr: -1});
+                                       }
+                                     })
+                                    }
+                                  })
                                 }
                                } else {
                                  var second_run = childproc(`/home/alef/Lam/attach-detach-web-service/generate_2.sh ${ip}`,
