@@ -116,7 +116,7 @@ top:1px;
 
 <div id="second">
 <p>
-<label id="zeroLabel" class = "text">Zero Rated Bytes</label>
+<label id="zeroLabel" class = "text">Previous Session</label>
 <textarea id="textbox" readonly="true" class="defaultTextBox"></textarea>
 </p>
 
@@ -132,13 +132,13 @@ function reset() {
     if (response["status"] == 200) {
       document.getElementById("label").firstChild.data = "Currently served by Alef";
       document.getElementById("attachButton").firstChild.data = "Detach from Alef";
-      document.getElementById("second").style.visibility = "visible";
+      document.getElementById("second").style.visibility = "hidden";
       attached = true
     } else {
       console.log("SUCCESS");
       document.getElementById("label").firstChild.data = "Currently served by Cloud";
       document.getElementById("attachButton").firstChild.data = "Attach to Alef";
-      document.getElementById("second").style.visibility = "hidden";
+      document.getElementById("second").style.visibility = "visible";
       attached = false
     }
   })
@@ -154,7 +154,7 @@ function attach() {
         console.log("SUCCESS");
         document.getElementById("attachButton").firstChild.data = "Detach from Alef";
 	document.getElementById("label").firstChild.data = "Currently served by Alef";
-        document.getElementById("second").style.visibility = "visible";
+        document.getElementById("second").style.visibility = "hidden";
         attached = true
       } else {
         console.log("something wrong");
@@ -163,15 +163,19 @@ function attach() {
   } else {
     fetch('http://10.14.32.28:9000/detach')
     .then(function(response) {
+
+      if (response["status"] == 200) {
+        console.log("SUCCESS");
+	      document.getElementById("label").firstChild.data = "Currently served by Cloud";
+        document.getElementById("attachButton").firstChild.data = "Attach to Alef";
+        document.getElementById("second").style.visibility = "visible";
+        attached = false
+      }
       return response.json();
     })
     .then(function(myJson) {
         console.log(myJson)
-        console.log("SUCCESS");
-	      document.getElementById("label").firstChild.data = "Currently served by Cloud";
-        document.getElementById("attachButton").firstChild.data = "Attach to Alef";
-        document.getElementById("second").style.visibility = "hidden";
-        attached = false
+        document.getElementById("textbox").firstChild.data = myJson["cdr"];
     })
   }
 }
