@@ -13,7 +13,6 @@ echo $B
 if [ -f $B ]; then
 cdrconvert -asn /opt/marben/ASN_1_CGF_Decoder_Dictionary.asn -msg GPRSRecord -i $B -o cdr_output.xml
 sudo python /opt/marben/cdrparse1.py cdr_output.xml $1
-cat /opt/marben/$1$E
 else
 echo "wrong file"
 fi

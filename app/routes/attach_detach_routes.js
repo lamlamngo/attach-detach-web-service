@@ -6,10 +6,10 @@ module.exports = function(app, childproc) {
     var ip = ipStr.substring(ipStr.lastIndexOf(":") + 1);
     console.log(`detach check ip address is ${ip}`)
     if (attached_list[ip]) {
-      var test = childproc(`cd /opt && sudo python 3Gdetach.py ${ip}`,
+      var test = childproc(`cd /opt && python 3Gdetach.py ${ip}`,
                 (error, stdout, stderr) => {
                   if (error == null) {
-                    var run = childproc(`/home/alef/Lam/attach-detach-web-service/generate.sh ${ip}`, 
+                    var run = childproc(`su user2 -C /home/alef/Lam/attach-detach-web-service/generate.sh ${ip}`, 
                       (error_1, stdout_1,stderr_1) => {
                         console.log("IN HERE")
                         console.log(error_1);
@@ -50,7 +50,7 @@ module.exports = function(app, childproc) {
     console.log(`attach check ip address is ${ip}`)
 
     if (!(ip in attached_list)) {
-      var test = childproc(`cd /opt && sudo python 3Gattach.py ${ip}`,
+      var test = childproc(`cd /opt && python 3Gattach.py ${ip}`,
                 (error, stdout, stderr) => {
                   if (error == null) {
                     res.sendStatus(200);
