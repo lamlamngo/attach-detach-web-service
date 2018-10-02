@@ -25,9 +25,9 @@ module.exports = function(app, childproc) {
                                 if (cdr_list.length == 3) {
                                   console.log(cdr_list[2])
 
-                                  res.send(cdr_list[2])
+                                  res.send({cdr: cdr_list[2]})
                                 } else {
-                                  res.send(-1);
+                                  res.send({cdr: -1});
                                   console.log("wrong length");
                                 }
                                } else {
@@ -46,13 +46,13 @@ module.exports = function(app, childproc) {
                                        if (cdr_list.length == 3) {
                                          console.log(cdr_list[2])
 
-                                         res.send(cdr_list[2])
+                                         res.send({cdr: cdr_list[2]})
                                        } else {
-                                         res.send(-1)
+                                         res.send({cdr: -1})
                                          console.log("wrong length");
                                        }
                                       } else {
-                                        res.send(-1);
+                                        res.send({cdr: -1});
                                       }
                                     })
                                    }
