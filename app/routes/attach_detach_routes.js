@@ -40,10 +40,10 @@ module.exports = function(app, childproc) {
                                        if (contents_2 != undefined) {
                                         var cdr_list_2 = contents_2.split(" ")
         
-                                        if (cdr_list.length == 3) {
-                                          console.log(cdr_list[2])
+                                        if (cdr_list_2.length == 3) {
+                                          console.log(cdr_list_2[2])
  
-                                          res.send({cdr: cdr_list[2]})
+                                          res.send({cdr: cdr_list_2[2]})
                                         } else {
                                           res.send({cdr: -1})
                                           console.log("wrong length");
