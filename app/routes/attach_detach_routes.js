@@ -51,6 +51,8 @@ module.exports = function(app, childproc) {
                                          res.send(-1)
                                          console.log("wrong length");
                                        }
+                                      } else {
+                                        res.sendStatus(12318274891274981);
                                       }
                                     })
                                    }
