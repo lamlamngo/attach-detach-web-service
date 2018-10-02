@@ -175,7 +175,7 @@ function attach() {
     })
     .then(function(myJson) {
         console.log(myJson)
-        document.getElementById("textbox").firstChild.data = myJson["cdr"];
+        document.getElementById("textbox").value = myJson["cdr"];
     })
   }
 }
