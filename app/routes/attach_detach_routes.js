@@ -16,7 +16,7 @@ module.exports = function(app, childproc) {
                         console.log(stdout_1);
                         if (error_1 == null) {
                             var fs = require('fs');
-                            fs.readFile(`/opt/marben/${ip}.outp`, 'utf8', function(err, contents) {
+                            fs.readFile(`/home/alef/Lam/attach-detach-web-service/${ip}.outp`, 'utf8', function(err, contents) {
                                console.log(contents);
                                
                                if (contents != undefined) {
@@ -37,7 +37,7 @@ module.exports = function(app, childproc) {
                                    if (error_2 == null) {
                                     var fs = require('fs');
 
-                                    fs.readFile(`opt/marben/${ip}.outp`, 'utf8', function(err, contents_2) {
+                                    fs.readFile(`/home/alef/Lam/attach-detach-web-service/${ip}.outp`, 'utf8', function(err, contents_2) {
                                       console.log(contents_2);
                                
                                       if (contents_2 != undefined) {
