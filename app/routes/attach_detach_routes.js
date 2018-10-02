@@ -30,6 +30,7 @@ module.exports = function(app, childproc) {
                                   var second_run = childproc(`/home/alef/Lam/attach-detach-web-service/generate_2.sh ${ip}`,
                                   (error_2, stdout_2, stderr_2) => {
                                     console.log("in here 222")
+                                    console.log(stdout_2)
                                     if (error_2 == null) {
                                      var fs = require('fs');
  
@@ -37,7 +38,7 @@ module.exports = function(app, childproc) {
                                        console.log(contents_2);
                                 
                                        if (contents_2 != undefined) {
-                                        var cdr_list = contents_2.split(" ")
+                                        var cdr_list_2 = contents_2.split(" ")
         
                                         if (cdr_list.length == 3) {
                                           console.log(cdr_list[2])
