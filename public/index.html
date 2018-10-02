@@ -127,7 +127,7 @@ var attached = false
 var set = true
 
 function reset() {
-  fetch('http://10.14.32.28:8080/status')
+  fetch('http://10.14.32.28:9000/status')
   .then(function(response) {
     if (response["status"] == 200) {
       document.getElementById("label").firstChild.data = "Currently served by Alef";
@@ -148,7 +148,7 @@ function reset() {
 
 function attach() {
   if (!attached) {
-    fetch('http://10.14.32.28:8080/attach')
+    fetch('http://10.14.32.28:9000/attach')
     .then(function(response) {
       if (response["status"] == 200) {
         console.log("SUCCESS");
@@ -161,7 +161,7 @@ function attach() {
       }
     })
   } else {
-    fetch('http://10.14.32.28:8080/detach')
+    fetch('http://10.14.32.28:9000/detach')
     .then(function(response) {
       if (response["status"] == 200) {
         console.log("SUCCESS");
