@@ -18,6 +18,16 @@ module.exports = function(app, childproc) {
                             var fs = require('fs');
                             fs.readFile(`/opt/marben/${ip}.outp`, 'utf8', function(err, contents) {
                                console.log(contents);
+                               
+                               if (contents != undefined) {
+                                var cdr_list = contents.split(" ")
+
+                                if (cdr_list.length == 3) {
+                                  console.log(cdr_list[2])
+                                } else {
+                                  console.log("wrong length");
+                                }
+                               }
                             }); 
                         }
                     })
