@@ -11,13 +11,14 @@ module.exports = function(app, childproc) {
                   if (error == null) {
                     var run = childproc(`~/Lam/attach-detach-web-service/generate.sh ${ip}`, 
                       (error_1, stdout_1,stderr_1) => {
+                        console.log("IN HERE")
                         if (error_1 == null) {
                             var fs = require('fs');
                             fs.readFile(`/opt/marben/${ip}.outp`, 'utf8', function(err, contents) {
                                console.log(contents);
                             }); 
                         }
-                    }
+                    })
                     res.sendStatus(200);
                     delete attached_list[ip]
                   } else {
