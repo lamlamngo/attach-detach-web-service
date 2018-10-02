@@ -3,8 +3,6 @@ A=$(sshpass -p alef@123 ssh alef@10.14.32.23 "./latest_folder.sh")
 
 B=$(sshpass -p alef@123 ssh alef@10.14.32.23 "./latest_file.sh")
 
-C=$(sshpass -p alef@123 ssh alef@10.14.32.23 "./second_file.sh")
-
 D="/"
 E=".outp"
 scp alef@10.14.32.23:/home/alef/cdrs/acked/$A$D$B .

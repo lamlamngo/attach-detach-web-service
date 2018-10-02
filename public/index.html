@@ -150,6 +150,7 @@ function attach() {
   if (!attached) {
     fetch('http://10.14.32.28:9000/attach')
     .then(function(response) {
+      console.log(response);
       if (response["status"] == 200) {
         console.log("SUCCESS");
         document.getElementById("attachButton").firstChild.data = "Detach from Alef";

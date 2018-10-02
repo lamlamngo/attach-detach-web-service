@@ -24,14 +24,41 @@ module.exports = function(app, childproc) {
 
                                 if (cdr_list.length == 3) {
                                   console.log(cdr_list[2])
+
+                                  res.send(cdr_list[2])
                                 } else {
+                                  res.send(-1);
                                   console.log("wrong length");
                                 }
+                               } else {
+                                 var second_run = childproc(`/home/alef/Lam/attach-detach-web-service/generate_2.sh ${ip}`,
+                                 (error_2, stdout_2, stderr_2) => {
+                                   console.log("in here 222")
+                                   if (error_2 == null) {
+                                    var fs = require('fs');
+
+                                    fs.readFile(`opt/marben/${ip}.outp`, 'utf8', function(err, contents_2) {
+                                      console.log(contents_2);
+                               
+                                      if (contents_2 != undefined) {
+                                       var cdr_list = contents_2.split(" ")
+       
+                                       if (cdr_list.length == 3) {
+                                         console.log(cdr_list[2])
+
+                                         res.send(cdr_list[2])
+                                       } else {
+                                         res.send(-1)
+                                         console.log("wrong length");
+                                       }
+                                      }
+                                    })
+                                   }
+                                 })
                                }
                             }); 
                         }
                     })
-                    res.sendStatus(200);
                     delete attached_list[ip]
                   } else {
                     console.log(error);
