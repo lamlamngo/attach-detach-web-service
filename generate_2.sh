@@ -9,8 +9,8 @@ scp alef@10.14.32.23:/home/alef/cdrs/acked/$A$D$B .
 
 echo $B
 if [ -f $B ]; then
-cdrconvert -asn /opt/marben/ASN_1_CGF_Decoder_Dictionary.asn -msg GPRSRecord -i $B -o cdr_output.xml
-python /opt/marben/cdrparse1.py cdr_output.xml $1
+cdrconvert -asn /opt/marben/ASN_1_CGF_Decoder_Dictionary.asn -msg GPRSRecord -i $B -o cdr_output_2.xml
+python /opt/marben/cdrparse1.py cdr_output_2.xml $1
 else
 echo "wrong file"
 fi
