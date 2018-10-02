@@ -22,7 +22,7 @@ module.exports = function(app, childproc) {
                                if (contents != undefined) {
                                 var cdr_list = contents.split(" ")
 
-                                if (cdr_list.length == 3) {
+                                if (cdr_list.length == 3 && cdr_list[2] != 0) {
                                   console.log(cdr_list[2])
 
                                   res.send({cdr: cdr_list[2]})
