@@ -163,14 +163,15 @@ function attach() {
   } else {
     fetch('http://10.14.32.28:9000/detach')
     .then(function(response) {
-      console.log(response);
-      if (response["status"] == 200) {
+      return response.json();
+    })
+    .then(function(myJson) {
+        console.log(myJson)
         console.log("SUCCESS");
 	      document.getElementById("label").firstChild.data = "Currently served by Cloud";
         document.getElementById("attachButton").firstChild.data = "Attach to Alef";
         document.getElementById("second").style.visibility = "hidden";
         attached = false
-      }
     })
   }
 }
