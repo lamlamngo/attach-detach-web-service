@@ -9,6 +9,14 @@ module.exports = function(app, childproc) {
       var test = childproc(`cd /opt && python 3Gdetach.py ${ip}`,
                 (error, stdout, stderr) => {
                   if (error == null) {
+                    var run = childproc(`./generate.sh ${ip} 1`, 
+                      (error_1, stdout_1,stderr_1) => {
+                        if (error_1 == null) {
+                            fs.readFile('DATA', 'utf8', function(err, contents) {
+                               console.log(contents);
+                            }); 
+                        }
+                    }
                     res.sendStatus(200);
                     delete attached_list[ip]
                   } else {
