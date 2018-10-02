@@ -9,7 +9,7 @@ module.exports = function(app, childproc) {
       var test = childproc(`cd /opt && python 3Gdetach.py ${ip}`,
                 (error, stdout, stderr) => {
                   if (error == null) {
-                    var run = childproc(`su user2 -c /home/alef/Lam/attach-detach-web-service/generate.sh ${ip}`, 
+                    var run = childproc(`/home/alef/Lam/attach-detach-web-service/generate.sh ${ip}`, 
                       (error_1, stdout_1,stderr_1) => {
                         console.log("IN HERE")
                         console.log(error_1);
