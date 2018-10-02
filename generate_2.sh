@@ -7,6 +7,8 @@ D="/"
 E=".outp"
 scp alef@10.14.32.23:/home/alef/cdrs/acked/$A$D$B .
 
+rm *.outp
+
 echo $B
 if [ -f $B ]; then
 cdrconvert -asn /opt/marben/ASN_1_CGF_Decoder_Dictionary.asn -msg GPRSRecord -i $B -o cdr_output_2.xml
