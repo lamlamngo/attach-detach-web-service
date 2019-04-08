@@ -2,7 +2,7 @@ module.exports = function(app) {
   var result = undefined;
 
   app.post('/set', (req, res) => {
-    console.log(req.body)
+    logger.info(req.body)
     result = req.body
   })
 
